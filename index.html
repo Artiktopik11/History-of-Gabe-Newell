@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gaben Legacy — История Гейба Ньюэлла</title>
+  <style>
+    /* Базовые стили: ретро-геймерская атмосфера */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0a0a0a;
+      color: #fff;
+      font-family: 'Courier New', Courier, monospace;
+      overflow: hidden; /* Чтобы не было скролла во время заставки */
+      height: 100vh;
+    }
+
+    /* Экран-заставка (интро) */
+    #intro-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+
+    .intro-box {
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .intro-title {
+      font-size: 3rem;
+      color: #ff4d4d; /* Оранжево-красный, как лямбда из HL */
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+    }
+
+    .intro-subtitle {
+      font-size: 1.1rem;
+      color: #aaa;
+      margin-bottom: 40px;
+      line-height: 1.4;
+    }
+
+    /* Контейнер для анимации */
+    .anim-stage {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 30px auto;
+      opacity: 0;           /* По умолчанию скрыт */
+      transform: translateY(30px); /* Чуть ниже */
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* Класс, который мы добавляем через JS, чтобы показать элемент */
+    .anim-stage.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .anim-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .caption {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #ccc;
+      text-align: center;
+    }
+
+    /* Кнопка входа на сайт */
+    .start-btn {
+      padding: 14px 28px;
+      background: #333;
+      color: #fff;
+      border: 1px solid #666;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: none; /* Скрыта, пока не пройдут анимации */
+      transition: all 0.3s ease;
+    }
+
+    .start-btn:hover {
+      background: #555;
+      border-color: #999;
+      box-shadow: 0 0 15px rgba(255, 77, 77, 0.3);
+    }
+
+    /* Основной контент сайта (скрыт, пока идёт интро) */
+    #main-content {
+      display: none;
+      padding: 40px;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h1 {
+      color: #ddd;
+    }
+
+    p {
+      color: #bbb;
+      line-height: 1.6;
+    }
+
+    /* Дисклеймер в подвале */
+    .footer-disclaimer {
+      margin-top: 60px;
+      font-size: 0.8rem;
+      color: #555;
+      border-top: 1px solid #222;
+      padding-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ЭКРАН-ЗАСТАВКА -->
+  <div id="intro-screen">
+    <div class="intro-box">
+      <h1 class="intro-title">GABEN LEGACY</h1>
+      <p class="intro-subtitle">От Windows до Half‑Life и Steam. История человека, изменившего индустрию.</p>
+
+      <!-- Анимация 1: персонаж из CS 1.6 -->
+      <div id="anim-cs" class="anim-stage">
+        <img src="assets/cs-character.png" alt="CS 1.6 character" class="anim-img" />
+        <span class="caption">Классика Counter‑Strike 1.6</span>
+      </div>
+
+      <!-- Анимация 2: монтировка из Half‑Life -->
+      <div id="anim-crowbar" class="anim-stage">
+        <img src="assets/crowbar.png" alt="Half‑Life crowbar" class="anim-img" />
+        <span class="caption">Инструмент легенды</span>
+      </div>
+
+      <button id="startBtn" class="start-btn">Продолжить</button>
+    </div>
+  </div>
+
+  <!-- ОСНОВНОЙ КОНТЕНТ САЙТА -->
+  <main id="main-content">
+    <h1>История Гейба Ньюэлла</h1>
+    <p>Здесь будет вся история: путь из Microsoft, создание Valve, революция Half‑Life, рождение Steam и влияние на игровую индустрию.</p>
+    
+    <section style="margin-top: 30px;">
+      <h2>Ключевые вехи</h2>
+      <ul style="color: #bbb;">
+        <li>13 лет в Microsoft — участие в выпуске первых версий Windows.</li>
+        <li>Основание Valve вместе с Майком Харрингтоном.</li>
+        <li>Half‑Life — игра, изменившая жанр шутеров.</li>
+        <li>Steam — от патчера до крупнейшей игровой платформы.</li>
+      </ul>
+    </section>
+
+    <footer class="footer-disclaimer">
+      Half‑Life, Counter‑Strike и связанные товарные знаки являются собственностью Valve Corporation. Данный сайт — фанатский некоммерческий проект и не аффилирован с Valve.
+    </footer>
+  </main>
+
+  <script>
+    // Настройки анимации
+    const durationPerAnim = 2500; // 2.5 секунды на каждую анимацию
+
+    // Элементы
+    const animCs = document.getElementById('anim-cs');
+    const animCrowbar = document.getElementById('anim-crowbar');
+    const startBtn = document.getElementById('startBtn');
+    const introScreen = document.getElementById('intro-screen');
+    const mainContent = document.getElementById('main-content');
+
+    // Функция показа анимации
+    function showAnim(element) {
+      element.classList.add('visible');
+    }
+
+    // Запуск цепочки анимаций
+    setTimeout(() => {
+      showAnim(animCs);
+
+      setTimeout(() => {
+        showAnim(animCrowbar);
+
+        setTimeout(() => {
+          // После второй анимации показываем кнопку
+          startBtn.style.display = 'block';
+        }, durationPerAnim);
+      }, durationPerAnim);
+    }, 500); // Небольшая задержка перед первой анимацией, чтобы всё выглядело плавно
+
+    // Обработка нажатия кнопки
+    startBtn.addEventListener('click', () => {
+      introScreen.style.display = 'none';
+      mainContent.style.display = 'block';
+      document.body.style.overflow = 'auto'; // Возвращаем возможность скролла
+    });
+  </script>
+</body>
+</html>
