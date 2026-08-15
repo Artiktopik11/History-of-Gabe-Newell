@@ -11,7 +11,7 @@
       background-color: #0a0a0a;
       color: #fff;
       font-family: 'Courier New', Courier, monospace;
-      overflow: hidden; /* Чтобы не было скролла во время заставки */
+      overflow: hidden;
       height: 100vh;
     }
 
@@ -38,7 +38,7 @@
 
     .intro-title {
       font-size: 3rem;
-      color: #ff4d4d; /* Оранжево-красный, как лямбда из HL */
+      color: #ff4d4d;
       text-transform: uppercase;
       letter-spacing: 4px;
       margin-bottom: 15px;
@@ -58,12 +58,11 @@
       width: 200px;
       height: 200px;
       margin: 30px auto;
-      opacity: 0;           /* По умолчанию скрыт */
-      transform: translateY(30px); /* Чуть ниже */
+      opacity: 0;
+      transform: translateY(30px);
       transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    /* Класс, который мы добавляем через JS, чтобы показать элемент */
     .anim-stage.visible {
       opacity: 1;
       transform: translateY(0);
@@ -95,7 +94,7 @@
       font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 2px;
-      display: none; /* Скрыта, пока не пройдут анимации */
+      display: none;
       transition: all 0.3s ease;
     }
 
@@ -105,11 +104,12 @@
       box-shadow: 0 0 15px rgba(255, 77, 77, 0.3);
     }
 
-    /* Основной контент сайта (скрыт, пока идёт интро) */
+    /* Основной контент сайта */
     #main-content {
       display: none;
       padding: 40px;
       animation: fadeIn 0.8s ease forwards;
+      overflow-y: auto;
     }
 
     @keyframes fadeIn {
@@ -119,11 +119,50 @@
 
     h1 {
       color: #ddd;
+      margin-bottom: 40px;
+      text-align: center;
     }
 
-    p {
+    /* Таймлайн */
+    .timeline {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 20px 0 20px 60px;
+      border-left: 2px solid #333;
+      margin-bottom: 10px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 15px;
+      width: 12px;
+      height: 12px;
+      background: #ff4d4d;
+      border-radius: 50%;
+    }
+
+    .year {
+      position: absolute;
+      left: -50px;
+      top: 0;
+      color: #aaa;
+      font-weight: bold;
+    }
+
+    .content h3 {
+      color: #ddd;
+      margin: 0 0 8px 0;
+    }
+
+    .content p {
       color: #bbb;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     /* Дисклеймер в подвале */
@@ -163,18 +202,41 @@
 
   <!-- ОСНОВНОЙ КОНТЕНТ САЙТА -->
   <main id="main-content">
-    <h1>История Гейба Ньюэлла</h1>
-    <p>Здесь будет вся история: путь из Microsoft, создание Valve, революция Half‑Life, рождение Steam и влияние на игровую индустрию.</p>
-    
-    <section style="margin-top: 30px;">
-      <h2>Ключевые вехи</h2>
-      <ul style="color: #bbb;">
-        <li>13 лет в Microsoft — участие в выпуске первых версий Windows.</li>
-        <li>Основание Valve вместе с Майком Харрингтоном.</li>
-        <li>Half‑Life — игра, изменившая жанр шутеров.</li>
-        <li>Steam — от патчера до крупнейшей игровой платформы.</li>
-      </ul>
-    </section>
+    <h1>Путь Гейба Ньюэлла</h1>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="year">1983–1996</span>
+        <div class="content">
+          <h3>Microsoft и Windows</h3>
+          <p>13 лет в Microsoft: участвовал в выпуске первых версий Windows, запускал мультимедийные проекты. Получил опыт управления большими продуктами — это позже сильно помогло в Valve.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="year">1996</span>
+        <div class="content">
+          <h3>Основание Valve</h3>
+          <p>Вместе с Майком Харрингтоном уходит из Microsoft и основывает Valve. Ставка на свободу разработки и доверие к талантам — именно так в компании рождались культовые проекты.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="year">1998</span>
+        <div class="content">
+          <h3>Half‑Life и движок GoldSrc</h3>
+          <p>Революция в жанре шутеров: сюжет через геймплей, без роликов. Движок дал простор для модов, из которых выросли Counter‑Strike и Team Fortress — и всё это благодаря открытости Valve к сообществу.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="year">2003–2004</span>
+        <div class="content">
+          <h3>Steam: от патчера к платформе</h3>
+          <p>Сначала Steam был просто способом обновлять Half‑Life. Потом стал магазином и экосистемой, которая изменила всю индустрию дистрибуции игр.</p>
+        </div>
+      </div>
+    </div>
 
     <footer class="footer-disclaimer">
       Half‑Life, Counter‑Strike и связанные товарные знаки являются собственностью Valve Corporation. Данный сайт — фанатский некоммерческий проект и не аффилирован с Valve.
@@ -209,7 +271,7 @@
           startBtn.style.display = 'block';
         }, durationPerAnim);
       }, durationPerAnim);
-    }, 500); // Небольшая задержка перед первой анимацией, чтобы всё выглядело плавно
+    }, 500); // Небольшая задержка перед первой анимацией
 
     // Обработка нажатия кнопки
     startBtn.addEventListener('click', () => {
